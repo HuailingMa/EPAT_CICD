@@ -55,7 +55,7 @@ jobs:
         with:
           args: >
             -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.projectKey=HuailingMa_EPAT_CICD
+            -Dsonar.projectKey=huailingma_EPAT_CICD
             -Dsonar.organization=huailingma
             -Dsonar.java.binaries=target/classes
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
