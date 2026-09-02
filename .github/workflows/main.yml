@@ -29,6 +29,12 @@ jobs:
       - name: Run unit tests
         run: ./mvnw test
 
+      - name: Upload Jacoco coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
+
       - name: Build the package
         run: ./mvnw package -DskipTests
 
@@ -37,3 +43,10 @@ jobs:
         with:
           name: cicd-demo-jar
           path: target/*.jar
+
+      - name: SonarCloud Scan
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
